@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exemplo 0x</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      Nome: <input type="text" v-model="aluno.nome" /> Nota:<input
+        type="number"
+        v-model="aluno.nota"
+      />
+
+      <button v-on:click="insere()">Insere</button>
+      <table border="1" style="margin-top: 15px">
+        <tr>
+          <th>Nome</th>
+          <th>Nota</th>
+          <th>Excluir</th>
+        </tr>
+        <tr v-for="a in alunos">
+          <td>{{a.nome}}</td>
+          <td>{{a.nota}}</td>
+          <td><button v-on:click="exclui()">Excluir</button></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        aluno: {
+          nome: "",
+          nota: 0,
+        },
+        alunos: [],
+      },
+      methods: {
+        insere() {
+          this.alunos.push({ nome: this.aluno.nome, nota: this.aluno.nota });
+          this.aluno.nome = "";
+          this.aluno.nota = 0;
+        },
+        exclui(alunos) {
+          this.alunos.splice(this.aluno, 1);
+        },
+      },
+    });
+  </script>
+</html>
